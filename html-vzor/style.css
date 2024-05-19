@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css?family=Bangers&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,400i,700,700i&subset=latin-ext');
+
+/* nastaveni barev */
+:root {
+	--cervena: #ff0844;
+	--oranzova: #ffb199;
+	--seda: #e0e0e0;
+}
+
+
+/* Magie a jednorožci */
+html { box-sizing: border-box; }
+*, ::before, :after { box-sizing: inherit; }
+
+
+body {
+	max-width: 65rem;
+	min-height: 100vh;
+	margin: 0 auto;
+	font-family: 'Nunito', sans-serif;
+	background-image: linear-gradient(to top, var(--cervena) 0%, var(--oranzova) 100%);
+}
+
+h1, h2, h3 {
+	font-family: 'Bangers', cursive;
+	font-weight: normal;
+}
+
+h1 { font-size: 60px; }
+h2 { font-size: 48px; }
+h3 { font-size: 24px; }
+
+/* ---------------------------------------*/
+/* hlavicka */
+/* ---------------------------------------*/
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 30px 0;
+}
+
+.header__title {
+	color: white;
+	margin: 0;
+	font-size: 120px;
+	color: white;
+	text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	letter-spacing: 5px;
+}
+
+
+
+
+/* ---------------------------------------*/
+/* menu */
+/* ---------------------------------------*/
+
+menu {
+	display: flex;
+}
+
+.menu__link {
+	display: inline-block;
+	padding: 15px 30px;
+	font-family: 'Nunito', sans-serif;
+	font-size: 18px;
+	font-weight: 700;
+	text-decoration: none;
+	color: white;
+	background-color: transparent;
+	border: 4px solid white;
+	border-radius: 100vw;
+	text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+
+.menu__link:hover,
+.menu__link--active {
+	color: var(--cervena);
+	background-color: white;
+	text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.menu__link:not(:last-child) {
+	margin-right: 10px;
+}
+
+
+
+
+/* ---------------------------------------*/
+/* paticka */
+/* ---------------------------------------*/
+
+.footer {
+	font-family: 'Bangers', cursive;
+	font-weight: normal;
+	font-size: 24px;
+	text-align: center;
+	color: white;
+}
+
+
+
+/* ---------------------------------------*/
+/* main */
+/* ---------------------------------------*/
+
+.main {
+	margin: 60px 0;
+}
+
+
+
+/* ---------------------------------------*/
+/* intro */
+/* ---------------------------------------*/
+
+.intro {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	gap: 60px;
+}
+
+.intro__logo {
+	width: 100%;
+}
+
+.intro__title {
+	margin-top: 0;
+}
+
+
+
+
+/* ---------------------------------------*/
+/* seznam kvízů */
+/* ---------------------------------------*/
+
+.quiz-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 60px;
+}
+
+
+.quiz-item {
+	text-align: center;
+}
+
+.quiz-item__image {
+	width: 100%;
+	max-width: 250px;
+	border-radius: 50%;
+	border: 4px solid var(--cervena);
+}
+
+.quiz-item__content {
+	margin-top: -50px;
+	padding: 70px 20px 20px 20px;
+	background-color: white;
+	border-radius: 15px;
+}
+
+.quiz-item__title {
+	margin: 0 0 10px 0;
+	font-size: 24px;
+	color: var(--cervena);
+}
+
+.quiz-item__questions {
+	margin: 10px 0;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.quiz-item__link {
+	display: inline-block;
+	padding: 15px 30px;
+	font-family: 'Nunito', sans-serif;
+	font-size: 18px;
+	font-weight: 700;
+	text-decoration: none;
+	color: white;
+	background-color: var(--cervena);
+	border-radius: 100vw;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+/* ---------------------------------------*/
+/* detail kvízu / otázky */
+/* ---------------------------------------*/
+
+.question {
+	padding: 50px;
+	min-height: 400px;
+	background-color: white;
+	color: black;
+	border-radius: 15px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.question__number {
+	margin: 0 0 20px 0;
+	font-family: 'Bangers', cursive;
+	font-size: 24px;
+	text-align: center;
+	color: var(--cervena);
+}
+
+.question__title {
+	margin: 20px 0 30px 0;
+	font-size: 36px;
+	line-height: 1.2;
+	text-align: center;
+	color: black;
+}
+
+.question__content {
+	display: grid;
+	grid-template-columns: 300px 1fr;
+	gap: 60px;
+	align-items: center;
+}
+
+.question__image {
+	width: 100%;
+	padding: 5px;
+	border-radius: 50%;
+	border: 3px dotted var(--cervena);
+}
+
+.question__answers {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 20px;
+}
+
+.question__answer {
+	font-size: 24px;
+	text-align: left;
+	padding: 15px 45px;
+	background-color: var(--seda);
+	border: 0;
+	border-radius: 100vw;
+	transition: all 0.2s;
+	transform: translateX(0);
+	cursor: pointer;
+}
+
+.question__answer:hover {
+	background-color: var(--cervena);
+	color: white;
+	transform: translateX(-10px);
+}
+
+
+
+
+/* ---------------------------------------*/
+/* výsledek kvízu / vyhodnocení */
+/* ---------------------------------------*/
+
+.evaluation {
+	padding: 50px;
+	min-height: 400px;
+	background-color: white;
+	color: black;
+	border-radius: 15px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.evaluation__title {
+	margin-top: 0;
+	color: var(--cervena);
+}
+
+.evaluation__content {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 60px;
+}
+
+.result {
+	display: grid;
+	grid-template-columns: 60px 1fr;
+	gap: 30px;
+}
+
+.result:not(:last-child) {
+	margin-bottom: 30px;
+}
+
+.result__icon {
+	width: 100%;
+}
+
+.result__title {
+	margin-top: 10px;
+}
+
+.result__answer {
+	margin: 5px 0;
+}
+
+.result__answer--correct {
+	font-weight: 700;
+	color: var(--cervena);
+}
+
+.results__count {
+	margin-top: 45px;
+	font-family: 'Bangers', cursive;
+	font-weight: normal;
+	font-size: 36px;
+}
+
+
+.success-rate {
+	background-color: var(--seda);
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Bangers', cursive;
+	font-size: 90px;
+	color: var(--cervena);
+}
+
+
+
+
+/* ---------------------------------------*/
+/* žebříček nejlepších */
+/* ---------------------------------------*/
+
+.topscore__title {
+	text-align: center;
+	color: white;
+}
+
+.topscore__list {
+	list-style: none;
+	margin: 50px auto;
+	padding: 0;
+	max-width: 40rem;
+}
+
+.topscore__item {
+	padding: 20px 30px;
+	margin-bottom: 20px;
+	background-color: white;
+	border-radius: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.topscore__name {
+	font-size: 24px;
+}
+
+.topscore__score {
+	font-family: 'Bangers', cursive;
+	font-size: 30px;
+}
