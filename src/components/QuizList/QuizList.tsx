@@ -13,7 +13,7 @@ export const QuizList: React.FC<QuizListProps> = ({ quizzesData }) => {
 
 			{
 				quizzesData.map((quiz, index) => 
-					<QuizItem image={quiz.image} title={quiz.title} questions={quiz.questions} key={index} />
+					<QuizItem image={quiz.image} title={quiz.title} questions={quiz.questions} id={quiz.id} key={index} />
 				)
 			}
 

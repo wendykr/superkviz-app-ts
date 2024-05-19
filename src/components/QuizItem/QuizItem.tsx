@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { QuizzesStructure } from '../../pages/QuizzesPage/QuizzesPage';
 import './QuizItem.css';
 
@@ -5,7 +6,7 @@ interface QuizItemProps extends QuizzesStructure {
   key: number;
 }
 
-export const QuizItem: React.FC<QuizItemProps> = ({ image, title, questions }) => {
+export const QuizItem: React.FC<QuizItemProps> = ({ image, title, questions, id }) => {
 
   return (
     <div className="quiz-item">
@@ -13,7 +14,7 @@ export const QuizItem: React.FC<QuizItemProps> = ({ image, title, questions }) =
       <div className="quiz-item__content">
         <h2 className="quiz-item__title">{title}</h2>
         <p className="quiz-item__questions">{questions} otázek</p>
-        <a className="quiz-item__link" href="#">Spustit kvíz</a>
+        <Link className="quiz-item__link" to={`${id}`}>Spustit kvíz</Link>
       </div>
     </div>
   )

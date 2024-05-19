@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { QuizList } from "../../components/QuizList/QuizList"
 
 export interface QuizzesStructure {
+  id: number;
   title: string;
   image: string;
   questions: number;
