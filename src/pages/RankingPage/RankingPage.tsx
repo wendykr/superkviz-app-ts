@@ -1,6 +1,23 @@
+import { useState, useEffect } from 'react';
 import './RankingPage.css';
 
+interface TopScoreStructure {
+  name: string;
+  score:number;
+}
+
 export const RankingPage: React.FC = () => {
+  const [topScoreData, setTopScoreData] = useState<TopScoreStructure[]>([]);
+
+  useEffect(() => {
+    const fetchTopScore = async (): Promise<void> => {
+      const response = await fetch('https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/topscore.json');
+      const data = await response.json();
+      setTopScoreData(data);
+    };
+
+    fetchTopScore();
+  }, []);
 
   return (
     <div className="topscore">
@@ -8,32 +25,12 @@ export const RankingPage: React.FC = () => {
       <h2 className="topscore__title">Žebříček nejlepších</h2>
 
       <ul className="topscore__list">
-
-        <li className="topscore__item">
-          <span className="topscore__name">Jarda Vomáčka</span>
-          <span className="topscore__score">9876 bodů</span>
-        </li>
-
-        <li className="topscore__item">
-          <span className="topscore__name">Emílie Přelétavá</span>
-          <span className="topscore__score">8723 bodů</span>
-        </li>
-
-        <li className="topscore__item">
-          <span className="topscore__name">Petra Novotná</span>
-          <span className="topscore__score">7465 bodů</span>
-        </li>
-
-        <li className="topscore__item">
-          <span className="topscore__name">Alena Blonďatá</span>
-          <span className="topscore__score">7132 bodů</span>
-        </li>
-
-        <li className="topscore__item">
-          <span className="topscore__name">Karel Polívka</span>
-          <span className="topscore__score">5865 bodů</span>
-        </li>
-
+        {topScoreData.map((item, index) => (
+          <li key={index} className="topscore__item">
+            <span className="topscore__name">{item.name}</span>
+            <span className="topscore__score">{item.score}</span>
+          </li>
+        ))}
       </ul>
 
   </div>
