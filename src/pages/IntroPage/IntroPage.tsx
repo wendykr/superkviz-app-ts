@@ -1,6 +1,6 @@
-import './HomePage.css';
+import './IntroPage.css';
 
-export const HomePage: React.FC = () => {
+export const IntroPage: React.FC = () => {
 
   return (
     <div className="intro">

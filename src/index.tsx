@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.tsx'
 import './index.css'
-import { HomePage } from './pages/HomePage/HomePage.tsx';
-import { RankingPage } from './pages/RankingPage/RankingPage.tsx';
+import { IntroPage } from './pages/IntroPage/IntroPage.tsx';
+import { TopScorePage } from './pages/TopScorePage/TopScorePage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -13,11 +13,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <HomePage />,
+        element: <IntroPage />,
       },
       {
-        path: 'ranking',
-        element: <RankingPage />,
+        path: 'topscore',
+        element: <TopScorePage />,
       },
     ]
   }

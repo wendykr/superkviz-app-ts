@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import './RankingPage.css';
+import './TopScorePage.css';
 
 interface TopScoreStructure {
   name: string;
   score:number;
 }
 
-export const RankingPage: React.FC = () => {
+export const TopScorePage: React.FC = () => {
   const [topScoreData, setTopScoreData] = useState<TopScoreStructure[]>([]);
 
   useEffect(() => {
