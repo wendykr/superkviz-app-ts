@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import './TopScorePage.css';
+import { TopScoreList } from '../../components/TopScoreList/TopScoreList';
 
-interface TopScoreStructure {
+export interface TopScoreStructure {
   name: string;
-  score:number;
+  score: number;
 }
 
 export const TopScorePage: React.FC = () => {
@@ -24,14 +25,7 @@ export const TopScorePage: React.FC = () => {
 
       <h2 className="topscore__title">Žebříček nejlepších</h2>
 
-      <ul className="topscore__list">
-        {topScoreData.map((item, index) => (
-          <li key={index} className="topscore__item">
-            <span className="topscore__name">{item.name}</span>
-            <span className="topscore__score">{item.score}</span>
-          </li>
-        ))}
-      </ul>
+      <TopScoreList topScoreData={topScoreData} />
 
   </div>
   )
