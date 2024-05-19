@@ -14,7 +14,7 @@ export const QuizItem: React.FC<QuizItemProps> = ({ image, title, questions, id 
       <div className="quiz-item__content">
         <h2 className="quiz-item__title">{title}</h2>
         <p className="quiz-item__questions">{questions} otázek</p>
-        <Link className="quiz-item__link" to={`${id}`}>Spustit kvíz</Link>
+        <Link className="quiz-item__link" to={`/quizzes/${id}`}>Spustit kvíz</Link>
       </div>
     </div>
   )
