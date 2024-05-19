@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.tsx'
 import './index.css'
 import { IntroPage } from './pages/IntroPage/IntroPage.tsx';
+import { QuizzesPage } from './pages/QuizzesPage/QuizzesPage.tsx';
 import { TopScorePage } from './pages/TopScorePage/TopScorePage.tsx';
 
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <IntroPage />,
+      },
+      {
+        path: 'quizzes',
+        element: <QuizzesPage />,
       },
       {
         path: 'topscore',
