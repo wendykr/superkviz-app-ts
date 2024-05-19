@@ -7,6 +7,7 @@ import { IntroPage } from './pages/IntroPage/IntroPage.tsx';
 import { QuizzesPage } from './pages/QuizzesPage/QuizzesPage.tsx';
 import { TopScorePage } from './pages/TopScorePage/TopScorePage.tsx';
 import { Question } from './components/Question/Question.tsx';
+import { Evaluation } from './components/Footer/Evaluation/Evaluation.tsx';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: 'quizzes/:questionId',
         element: <Question />,
+      },
+      {
+        path: 'evaluation',
+        element: <Evaluation />,
       },
       {
         path: 'topscore',

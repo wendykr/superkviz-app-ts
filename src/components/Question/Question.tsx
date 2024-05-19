@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './Question.css';
 
 interface Answer {
@@ -22,6 +22,7 @@ export const Question: React.FC = () => {
   const [questionNumber, setQuestionNumber] = useState<number>(1);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
   const { questionId } = useParams<{ questionId: string }>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuestion = async (): Promise<void> => {
@@ -38,6 +39,7 @@ export const Question: React.FC = () => {
   const handleClick = () => {
     setQuestionNumber(prev => prev + 1);
     setCurrentQuestionNumber(prev => prev + 1);
+    (questionNumber === questionData?.questions.length) && navigate('/evaluation');
   }
 
   return (
