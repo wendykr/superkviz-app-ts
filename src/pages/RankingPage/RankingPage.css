@@ -1,0 +1,30 @@
+.topscore__title {
+	text-align: center;
+	color: white;
+}
+
+.topscore__list {
+	list-style: none;
+	margin: 50px auto;
+	padding: 0;
+	max-width: 40rem;
+}
+
+.topscore__item {
+	padding: 20px 30px;
+	margin-bottom: 20px;
+	background-color: white;
+	border-radius: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.topscore__name {
+	font-size: 24px;
+}
+
+.topscore__score {
+	font-family: 'Bangers', cursive;
+	font-size: 30px;
+}
