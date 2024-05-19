@@ -19,6 +19,8 @@ interface QuestionDataStructure {
 
 export const Question: React.FC = () => {
   const [questionData, setQuestionData] = useState<QuestionDataStructure>();
+  const [questionNumber, setQuestionNumber] = useState<number>(1);
+  const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
   const { questionId } = useParams<{ questionId: string }>();
 
   useEffect(() => {
@@ -29,14 +31,19 @@ export const Question: React.FC = () => {
       }
 
     fetchQuestion();
-  }, []);
+  }, [questionId]);
 
-  const currentQuestion = questionData?.questions[0];
+  const currentQuestion = questionData?.questions[currentQuestionNumber];
+
+  const handleClick = () => {
+    setQuestionNumber(prev => prev + 1);
+    setCurrentQuestionNumber(prev => prev + 1);
+  }
 
   return (
     <div className="question">
 
-      <p className="question__number">Otázka 1 / {questionData?.questions.length}</p>
+      <p className="question__number">Otázka {questionNumber} / {questionData?.questions.length}</p>
 
       <h2 className="question__title">{currentQuestion?.title}</h2>
 
@@ -45,7 +52,7 @@ export const Question: React.FC = () => {
 
         <div className="question__answers">
           {currentQuestion?.answers.map((answer, index) => (
-            <button key={index} className="question__answer">{answer}</button>
+            <button key={index} className="question__answer" onClick={handleClick}>{answer}</button>
           ))}
         </div>
       </div>
