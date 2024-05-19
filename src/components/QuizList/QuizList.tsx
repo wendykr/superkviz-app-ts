@@ -1,7 +1,7 @@
 import { QuizzesStructure } from '../../pages/QuizzesPage/QuizzesPage';
 import './QuizList.css';
 
-interface QuizListProps extends QuizzesStructure {
+interface QuizListProps {
 	quizzesData: QuizzesStructure[];
 }
 
