@@ -1,0 +1,30 @@
+menu {
+	display: flex;
+}
+
+.menu__link {
+	display: inline-block;
+	padding: 15px 30px;
+	font-family: 'Nunito', sans-serif;
+	font-size: 18px;
+	font-weight: 700;
+	text-decoration: none;
+	color: #ffffff;
+	background-color: transparent;
+	border: 4px solid #ffffff;
+	border-radius: 100vw;
+	text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+
+.menu__link:hover,
+.menu__link--active {
+	color: var(--cervena);
+	background-color: #ffffff;
+	text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.menu__link:not(:last-child) {
+	margin-right: 10px;
+}
