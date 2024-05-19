@@ -24,6 +24,8 @@ export const Question: React.FC = () => {
   const { questionId } = useParams<{ questionId: string }>();
   const navigate = useNavigate();
 
+  const [yourAnswers, setYourAnswers] = useState<number[]>([]);
+
   useEffect(() => {
     const fetchQuestion = async (): Promise<void> => {
       const response = await fetch(`https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/${questionId}.json`);
@@ -34,13 +36,21 @@ export const Question: React.FC = () => {
     fetchQuestion();
   }, [questionId]);
 
+  useEffect(() => {
+    if (questionData && currentQuestionNumber >= questionData.questions.length) {
+      navigate('/evaluation');
+    }
+  }, [currentQuestionNumber, questionData, navigate]);
+
   const currentQuestion = questionData?.questions[currentQuestionNumber];
 
-  const handleClick = () => {
+  const handleClick = (index: number) => {
     setQuestionNumber(prev => prev + 1);
     setCurrentQuestionNumber(prev => prev + 1);
-    (questionNumber === questionData?.questions.length) && navigate('/evaluation');
+    setYourAnswers(prev => [...prev, index]);
   }
+
+  console.log('yourAnswers', yourAnswers);
 
   return (
     <div className="question">
@@ -54,7 +64,7 @@ export const Question: React.FC = () => {
 
         <div className="question__answers">
           {currentQuestion?.answers.map((answer, index) => (
-            <button key={index} className="question__answer" onClick={handleClick}>{answer}</button>
+            <button key={index} className="question__answer" onClick={() => handleClick(index)}>{answer}</button>
           ))}
         </div>
       </div>
