@@ -1,7 +1,7 @@
-import { Results } from '../../Results/Results';
-import './Evaluation.css';
+import { Results } from '../../components/Results/Results';
+import './EvaluationPage.css';
 
-export const Evaluation: React.FC = () => {
+export const EvaluationPage: React.FC = () => {
 
   return (
     <div className="evaluation">
