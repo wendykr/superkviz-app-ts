@@ -17,14 +17,16 @@ interface QuestionDataStructure {
   questions: Answer[];
 }
 
-export const Question: React.FC = () => {
+interface QuestionProps {
+  yourAnswers: (index: number) => void;
+}
+
+export const Question: React.FC<QuestionProps> = ({ yourAnswers }) => {
   const [questionData, setQuestionData] = useState<QuestionDataStructure>();
   const [questionNumber, setQuestionNumber] = useState<number>(1);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
   const { questionId } = useParams<{ questionId: string }>();
   const navigate = useNavigate();
-
-  const [yourAnswers, setYourAnswers] = useState<number[]>([]);
 
   useEffect(() => {
     const fetchQuestion = async (): Promise<void> => {
@@ -47,7 +49,7 @@ export const Question: React.FC = () => {
   const handleClick = (index: number) => {
     setQuestionNumber(prev => prev + 1);
     setCurrentQuestionNumber(prev => prev + 1);
-    setYourAnswers(prev => [...prev, index]);
+    yourAnswers(index);
   }
 
   console.log('yourAnswers', yourAnswers);
