@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './Question.css';
 
-interface Answer {
+export interface Answer {
   id: number;
   title: string;
   image: string;
@@ -10,7 +10,7 @@ interface Answer {
   correctAnswer: number;
 }
 
-interface QuestionDataStructure {
+export interface QuestionDataStructure {
   id: number;
   title: string;
   image: string;
@@ -19,9 +19,10 @@ interface QuestionDataStructure {
 
 interface QuestionProps {
   yourAnswers: (index: number) => void;
+  setQuestionId: (id: string) => void;
 }
 
-export const Question: React.FC<QuestionProps> = ({ yourAnswers }) => {
+export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }) => {
   const [questionData, setQuestionData] = useState<QuestionDataStructure>();
   const [questionNumber, setQuestionNumber] = useState<number>(1);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
@@ -29,14 +30,17 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (questionId) {
+      setQuestionId(questionId);
+    }
     const fetchQuestion = async (): Promise<void> => {
       const response = await fetch(`https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/${questionId}.json`);
-      const data= await response.json();
+      const data = await response.json();
       setQuestionData(data);
-      }
+    };
 
     fetchQuestion();
-  }, [questionId]);
+  }, [questionId, setQuestionId]);
 
   useEffect(() => {
     if (questionData && currentQuestionNumber >= questionData.questions.length) {
@@ -51,8 +55,6 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers }) => {
     setCurrentQuestionNumber(prev => prev + 1);
     yourAnswers(index);
   }
-
-  console.log('yourAnswers', yourAnswers);
 
   return (
     <div className="question">

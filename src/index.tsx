@@ -12,6 +12,7 @@ import { EvaluationPage } from './pages/EvaluationPage/EvaluationPage.tsx';
 
 const Main = () => {
   const [yourAnswers, setYourAnswers] = useState<number[]>([]);
+  const [questionId, setQuestionId] = useState<string>();
 
   const handleAnswer = (index: number) => {
     setYourAnswers(prev => [...prev, index]);
@@ -36,12 +37,13 @@ const Main = () => {
           element={
             <Question
               yourAnswers={handleAnswer}
+              setQuestionId={setQuestionId}
             />
           }
         />
         <Route
           path="evaluation"
-          element={<EvaluationPage yourAnswers={yourAnswers} />}
+          element={<EvaluationPage yourAnswers={yourAnswers} questionId={Number(questionId)} />}
         />
         <Route
           path="topscore"
