@@ -1,3 +1,4 @@
+import { declineResultsCount } from '../../helpers/helpers';
 import { Answer } from '../Question/Question';
 import { Result } from '../Result/Result';
 import './Results.css';
@@ -30,7 +31,7 @@ export const Results: React.FC<ResultsProps> = ({ questions, yourAnswers }) => {
       })}
 
       <div className="results__count">
-        Správně máš {yourAnswers.filter((answer, index) => answer === questions?.[index].correctAnswer).length} ze {questions?.length} otázek.
+        Správně máš {yourAnswers.filter((answer, index) => answer === questions?.[index].correctAnswer).length} {declineResultsCount(questions?.length)}.
       </div>
     </div>
   );
