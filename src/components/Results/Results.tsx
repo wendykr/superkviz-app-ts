@@ -1,4 +1,5 @@
 import { Answer } from '../Question/Question';
+import { Result } from '../Result/Result';
 import './Results.css';
 
 interface ResultsProps {
@@ -16,24 +17,15 @@ export const Results: React.FC<ResultsProps> = ({ questions, yourAnswers }) => {
         const isCorrect = userAnswerIndex === question.correctAnswer;
 
         return (
-          <div className="result" key={index}>
-            <img
-              className="result__icon"
-              src={`images/${isCorrect ? 'correct' : 'incorrect'}.svg`}
-              alt={isCorrect ? 'správně' : 'špatně'}
-            />
-            <div className="result__content">
-              <h3 className="result__title">
-                {question.id}. {question.title}
-              </h3>
-              <p className="result__answer">Tvoje odpověď: {userAnswer}</p>
-              {!isCorrect && (
-                <p className="result__answer result__answer--correct">
-                  Správná odpověď: {correctAnswer}
-                </p>
-              )}
-            </div>
-          </div>
+          <Result
+            key={index}
+            index={index}
+            isCorrect={isCorrect}
+            questionId={question.id}
+            questionTitle={question.title}
+            userAnswer={userAnswer}
+            correctAnswer={correctAnswer}
+          />
         );
       })}
 

@@ -5,44 +5,6 @@
 	font-size: 36px;
 }
 
-.success-rate {
-	background-color: var(--seda);
-	border-radius: 20px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-family: 'Bangers', cursive;
-	font-size: 90px;
-	color: var(--cervena);
-}
-
-.result {
-	display: grid;
-	grid-template-columns: 60px 1fr;
-	gap: 30px;
-}
-
-.result:not(:last-child) {
-	margin-bottom: 30px;
-}
-
-.result__icon {
-	width: 100%;
-}
-
-.result__title {
-	margin-top: 10px;
-}
-
-.result__answer {
-	margin: 5px 0;
-}
-
-.result__answer--correct {
-	font-weight: 700;
-	color: var(--cervena);
-}
-
 .results__count {
 	margin-top: 45px;
 	font-family: 'Bangers', cursive;
