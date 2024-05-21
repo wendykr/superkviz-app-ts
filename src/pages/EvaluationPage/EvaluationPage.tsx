@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Results } from '../../components/Results/Results';
 import './EvaluationPage.css';
 import { QuestionDataStructure } from '../../components/Question/Question';
+import { Link } from 'react-router-dom';
 
 interface EvaluationPageProps {
   yourAnswers: number[];
@@ -27,13 +28,21 @@ export const EvaluationPage: React.FC<EvaluationPageProps> = ({ yourAnswers, que
       <h2 className="evaluation__title">Tvoje hodnocení</h2>
 
       <div className="evaluation__content">
+        {
+          questionData ?
+          <>
+              <Results questions={questionData.questions} yourAnswers={yourAnswers} />
 
-        <Results questions={questionData?.questions} yourAnswers={yourAnswers} />
-
-        <div className="success-rate">
-          100 %
-        </div>
-
+              <div className="success-rate">
+              100 %
+            </div>
+          </>
+          :
+          <div>
+            <p>Zde není žádné hodnocení. Pro jeho zobrazení je nutné nejpve vyplnit kvíz.</p>
+            <p>Přejít na výběr s <Link to="/quizzes">Kvízy</Link></p>
+          </div>
+        }
       </div>
 
     </div>

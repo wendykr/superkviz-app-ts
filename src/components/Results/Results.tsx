@@ -3,14 +3,14 @@ import { Result } from '../Result/Result';
 import './Results.css';
 
 interface ResultsProps {
-  questions: Answer[] | undefined;
+  questions: Answer[];
   yourAnswers: number[];
 }
 
 export const Results: React.FC<ResultsProps> = ({ questions, yourAnswers }) => {
   return (
     <div className="results">
-      {questions?.map((question, index) => {
+      {questions.map((question, index) => {
         const userAnswerIndex = yourAnswers[index];
         const userAnswer = question.answers[userAnswerIndex];
         const correctAnswer = question.answers[question.correctAnswer];
