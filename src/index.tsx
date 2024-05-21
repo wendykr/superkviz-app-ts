@@ -18,6 +18,11 @@ const Main = () => {
     setYourAnswers(prev => [...prev, index]);
   };
 
+  const handleReset = () => {
+    setYourAnswers([]);
+    setQuestionId('');
+  }
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route
@@ -30,7 +35,11 @@ const Main = () => {
         />
         <Route
           path="quizzes"
-          element={<QuizzesPage />}
+          element={
+            <QuizzesPage
+              onHandleReset={handleReset}
+            />
+          }
         />
         <Route
           path="quizzes/:questionId"

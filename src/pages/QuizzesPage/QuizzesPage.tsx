@@ -8,7 +8,11 @@ export interface QuizzesStructure {
   questions: number;
 }
 
-export const QuizzesPage: React.FC = () => {
+interface QuizzesPageProps {
+  onHandleReset: () => void;
+}
+
+export const QuizzesPage: React.FC<QuizzesPageProps> = ({ onHandleReset }) => {
   const [quizzesData, setQuizzesData] = useState<QuizzesStructure[]>([]);
 
   useEffect(() => {
@@ -22,6 +26,9 @@ export const QuizzesPage: React.FC = () => {
   }, []);
 
   return (
-    <QuizList quizzesData={quizzesData} />
+    <QuizList
+      quizzesData={quizzesData}
+      onHandleReset={onHandleReset}
+    />
   )
 }

@@ -5,9 +5,10 @@ import './QuizItem.css';
 
 interface QuizItemProps extends QuizzesStructure {
   key: number;
+  onHandleReset: () => void;
 }
 
-export const QuizItem: React.FC<QuizItemProps> = ({ image, title, questions, id }) => {
+export const QuizItem: React.FC<QuizItemProps> = ({ image, title, questions, id, onHandleReset }) => {
 
   return (
     <div className="quiz-item">
@@ -15,7 +16,7 @@ export const QuizItem: React.FC<QuizItemProps> = ({ image, title, questions, id 
       <div className="quiz-item__content">
         <h2 className="quiz-item__title">{title}</h2>
         <p className="quiz-item__questions">{questions} {declineQuestions(questions)}</p>
-        <Link className="quiz-item__link" to={`/quizzes/${id}`}>Spustit kvíz</Link>
+        <Link className="quiz-item__link" to={`/quizzes/${id}`} onClick={onHandleReset}>Spustit kvíz</Link>
       </div>
     </div>
   )
