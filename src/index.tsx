@@ -59,7 +59,8 @@ const Main = () => {
           element={<TopScorePage />}
         />
       </Route>
-    )
+    ),
+    { basename: "/superkviz-app-ts" }
   );
 
   return <RouterProvider router={router} />;
