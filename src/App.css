@@ -1,3 +1,13 @@
 .main {
-	margin: 60px 0;
+	margin: 60px 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex-grow: 1;
+}
+
+@media screen and (min-width: 1040px) {
+  .main {
+    margin: 60px 0;
+  }
 }

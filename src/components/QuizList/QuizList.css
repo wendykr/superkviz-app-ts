@@ -1,5 +1,12 @@
 .quiz-list {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	display: flex;
+	flex-direction: column;
 	gap: 60px;
+}
+
+@media screen and (min-width: 720px) {
+	.quiz-list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
