@@ -11,6 +11,9 @@ interface EvaluationPageProps {
 
 export const EvaluationPage: React.FC<EvaluationPageProps> = ({ yourAnswers, questionId }) => {
   const [questionData, setQuestionData] = useState<QuestionDataStructure>();
+  const [correctQuestions, setCorrectQuestions] = useState<number>(0);
+  const [totalQuestions, setTotalQuestions] = useState<number>(0);
+  const [, setIncorrectQuestions] = useState<number>(0);
 
   useEffect(() => {
     const fetchQuestion = async (): Promise<void> => {
@@ -22,6 +25,18 @@ export const EvaluationPage: React.FC<EvaluationPageProps> = ({ yourAnswers, que
     fetchQuestion();
   }, [questionId]);
 
+  useEffect(() => {
+    if (questionData) {
+      const total = questionData.questions.length;
+      const correct = yourAnswers.filter((answer, index) => answer === questionData.questions[index].correctAnswer).length;
+      const incorrect = total - correct;
+
+      setTotalQuestions(total);
+      setCorrectQuestions(correct);
+      setIncorrectQuestions(incorrect);
+    }
+  }, [questionData, yourAnswers]);
+
   return (
     <div className="evaluation">
 
@@ -31,10 +46,10 @@ export const EvaluationPage: React.FC<EvaluationPageProps> = ({ yourAnswers, que
         {
           questionData ?
           <>
-              <Results questions={questionData.questions} yourAnswers={yourAnswers} />
+            <Results questions={questionData.questions} yourAnswers={yourAnswers} />
 
-              <div className="success-rate">
-              100 %
+            <div className="success-rate">
+              {((correctQuestions / totalQuestions) * 100).toFixed(0)} %
             </div>
           </>
           :
