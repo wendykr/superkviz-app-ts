@@ -10,15 +10,6 @@ interface ResultsProps {
 
 export const Results: React.FC<ResultsProps> = ({ questions, yourAnswers }) => {
 
-  // const total = questions?.length;
-  // console.log(total);
-
-  // const success = yourAnswers.filter((answer, index) => answer === questions?.[index].correctAnswer).length;
-  // console.log(success);
-
-  // const mistakes = totalQuestion - success;
-  // console.log(mistakes);
-
   return (
     <div className="results">
       {questions.map((question, index) => {
