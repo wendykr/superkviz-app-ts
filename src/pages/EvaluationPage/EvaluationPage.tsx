@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Results } from '../../components/Results/Results';
 import './EvaluationPage.css';
-import { QuestionDataStructure } from '../../components/Question/Question';
+import { QuestionsStructure } from '../../components/Question/Question';
 import { Link } from 'react-router-dom';
+import { supabase } from '../../supabaseClient';
 
 interface EvaluationPageProps {
   yourAnswers: number[];
@@ -10,25 +11,45 @@ interface EvaluationPageProps {
 }
 
 export const EvaluationPage: React.FC<EvaluationPageProps> = ({ yourAnswers, questionId }) => {
-  const [questionData, setQuestionData] = useState<QuestionDataStructure>();
+  const [questionData, setQuestionData] = useState<QuestionsStructure[]>([]);
   const [correctQuestions, setCorrectQuestions] = useState<number>(0);
   const [totalQuestions, setTotalQuestions] = useState<number>(0);
   const [, setIncorrectQuestions] = useState<number>(0);
 
   useEffect(() => {
-    const fetchQuestion = async (): Promise<void> => {
-      const response = await fetch(`https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/${questionId}.json`);
-      const data= await response.json();
-      setQuestionData(data);
-      }
-
-    fetchQuestion();
+    if (questionId) {
+      getQuestion();
+    }
   }, [questionId]);
+  
+  const getQuestion = async (): Promise<void> => {
+
+    try {
+      const { data: question, error } = await supabase
+        .from('questions')
+        .select('*')
+        .eq('quizzesId', Number(questionId));
+  
+      if (error) {
+        console.error('Chyba při načítání dat:', error);
+        return;
+      }
+  
+      if (question && question.length > 0) {
+        setQuestionData(question);
+      } else {
+        console.error('Nebyly nalezeny žádné otázky.');
+      }
+    } catch (error) {
+      console.error('Neočekávaná chyba při načítání dat:', error);
+    }
+  };
 
   useEffect(() => {
+
     if (questionData) {
-      const total = questionData.questions.length;
-      const correct = yourAnswers.filter((answer, index) => answer === questionData.questions[index].correctAnswer).length;
+      const total = questionData.length;
+      const correct = yourAnswers.filter((answer, index) => answer === questionData[index]?.correctAnswer).length;
       const incorrect = total - correct;
 
       setTotalQuestions(total);
@@ -44,9 +65,9 @@ export const EvaluationPage: React.FC<EvaluationPageProps> = ({ yourAnswers, que
 
       <div className="evaluation__content">
         {
-          questionData ?
+          questionData && questionData.length > 0 ?
           <>
-            <Results questions={questionData.questions} yourAnswers={yourAnswers} />
+            <Results questions={questionData} yourAnswers={yourAnswers} />
 
             <div className="success-rate">
               {((correctQuestions / totalQuestions) * 100).toFixed(0)} %

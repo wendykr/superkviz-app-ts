@@ -6,7 +6,7 @@ interface ResultProps {
   questionTitle: string;
   isCorrect: boolean;
   userAnswer: string;
-  correctAnswer: string
+  correctAnswer: string;
 }
 
 export const Result: React.FC<ResultProps> = ({ index, questionId, questionTitle, isCorrect, userAnswer, correctAnswer }) => {

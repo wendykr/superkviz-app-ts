@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { QuizList } from "../../components/QuizList/QuizList"
+import { QuizList } from "../../components/QuizList/QuizList";
+import { supabase } from '../../supabaseClient';
 
 export interface QuizzesStructure {
   id: number;
@@ -16,19 +17,32 @@ export const QuizzesPage: React.FC<QuizzesPageProps> = ({ onHandleReset }) => {
   const [quizzesData, setQuizzesData] = useState<QuizzesStructure[]>([]);
 
   useEffect(() => {
-    const fetchQuizzes = async (): Promise<void> => {
-      const response = await fetch('https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quizes.json');
-      const data = await response.json();
-      setQuizzesData(data);
-    };
-
-    fetchQuizzes();
+    getQuizzes();
   }, []);
+
+  const getQuizzes = async (): Promise<void> => {
+    try {
+      const { data: quizzes, error } = await supabase
+        .from('quizzes')
+        .select('*');
+
+      if (error) {
+        console.error('Chyba při načítání dat:', error);
+        return;
+      }
+
+      if (quizzes) {
+        setQuizzesData(quizzes);
+      }
+    } catch (error) {
+      console.error('Neočekávaná chyba při načítání dat:', error);
+    }
+  };
 
   return (
     <QuizList
       quizzesData={quizzesData}
       onHandleReset={onHandleReset}
     />
-  )
-}
+  );
+};

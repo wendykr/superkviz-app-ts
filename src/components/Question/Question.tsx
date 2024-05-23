@@ -1,20 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './Question.css';
+import { supabase } from '../../supabaseClient';
 
-export interface Answer {
+export interface QuestionsStructure {
   id: number;
   title: string;
   image: string;
   answers: string[];
   correctAnswer: number;
-}
-
-export interface QuestionDataStructure {
-  id: number;
-  title: string;
-  image: string;
-  questions: Answer[];
+  quizzesId: number;
 }
 
 interface QuestionProps {
@@ -23,7 +18,7 @@ interface QuestionProps {
 }
 
 export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }) => {
-  const [questionData, setQuestionData] = useState<QuestionDataStructure>();
+  const [questionData, setQuestionData] = useState<QuestionsStructure[]>([]);
   const [questionNumber, setQuestionNumber] = useState<number>(1);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
   const { questionId } = useParams<{ questionId: string }>();
@@ -32,23 +27,39 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }
   useEffect(() => {
     if (questionId) {
       setQuestionId(questionId);
+      getQuestion();
     }
-    const fetchQuestion = async (): Promise<void> => {
-      const response = await fetch(`https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/${questionId}.json`);
-      const data = await response.json();
-      setQuestionData(data);
-    };
-
-    fetchQuestion();
   }, [questionId, setQuestionId]);
-
+  
+  const getQuestion = async (): Promise<void> => {
+    try {
+      const { data: question, error } = await supabase
+        .from('questions')
+        .select('*')
+        .eq('quizzesId', Number(questionId));
+  
+      if (error) {
+        console.error('Chyba při načítání dat:', error);
+        return;
+      }
+  
+      if (question && question.length > 0) {
+        setQuestionData(question);
+      } else {
+        console.error('Nebyly nalezeny žádné otázky.');
+      }
+    } catch (error) {
+      console.error('Neočekávaná chyba při načítání dat:', error);
+    }
+  };
+  
   useEffect(() => {
-    if (questionData && currentQuestionNumber >= questionData.questions.length) {
+    if (questionData && questionData.length > 0 && currentQuestionNumber >= questionData.length) {
       navigate('/evaluation');
     }
   }, [currentQuestionNumber, questionData, navigate]);
-
-  const currentQuestion = questionData?.questions[currentQuestionNumber];
+  
+  const currentQuestion = questionData?.[currentQuestionNumber];
 
   const handleClick = (index: number) => {
     setQuestionNumber(prev => prev + 1);
@@ -59,7 +70,7 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }
   return (
     <div className="question">
 
-      <p className="question__number">Otázka {questionNumber} / {questionData?.questions.length}</p>
+      <p className="question__number">Otázka {questionNumber} / {questionData.length}</p>
 
       <h2 className="question__title">{currentQuestion?.title}</h2>
 
