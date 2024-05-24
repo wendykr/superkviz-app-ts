@@ -1,6 +1,12 @@
-# Projekt Superkvíz
+# Projekt Superkvíz / verze React + Typescript +  Supabase
 
-Naprogramuj Superkvíz! Zadání je záměrně velmi stručné. Přeci se nenecháš stále vodit za ručičku. Většinu věcí už jsi určitě schopná vymyslet sama :)
+<span style="color: red;">Aplikaci jsem naprogramovala v **Reactu** s použitím **TypeScriptu**.</span>  
+<span style="color: red;">Pro načítání dat jsem využila cloudovou databázi **Supabase**.</span>
+
+
+## Původní zadání
+Naprogramuj Superkvíz! Ve složce `html-vzor`, máš tam připravený vzhled aplikace v podobě hotového HTML, CSS a připravených obrázků.
+
 
 ![ukázka Superkvízu](ukazka/superkviz-ukazka.jpg)
 
