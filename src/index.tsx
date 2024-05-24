@@ -60,7 +60,6 @@ const Main = () => {
         />
       </Route>
     ),
-    { basename: "/superkviz-app-ts" }
   );
 
   return <RouterProvider router={router} />;
