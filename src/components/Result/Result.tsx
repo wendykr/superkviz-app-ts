@@ -6,13 +6,13 @@ interface ResultProps {
   questionTitle: string;
   isCorrect: boolean;
   userAnswer: string;
-  correctAnswer: string
+  correctAnswer: string;
 }
 
-export const Result: React.FC<ResultProps> = ({ index, questionId, questionTitle, isCorrect, userAnswer, correctAnswer }) => {
+export const Result: React.FC<ResultProps> = ({ index, questionTitle, isCorrect, userAnswer, correctAnswer }) => {
 
   return (
-    <div className="result" key={index}>
+    <div className="result">
       <img
         className="result__icon"
         src={`images/${isCorrect ? 'correct' : 'incorrect'}.svg`}
@@ -20,7 +20,7 @@ export const Result: React.FC<ResultProps> = ({ index, questionId, questionTitle
       />
       <div className="result__content">
         <h3 className="result__title">
-          {questionId}. {questionTitle}
+          {index + 1}. {questionTitle}
         </h3>
         <p className="result__answer">Tvoje odpověď: {userAnswer}</p>
         {!isCorrect && (

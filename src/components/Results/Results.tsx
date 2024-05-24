@@ -1,10 +1,10 @@
 import { declineResultsCount } from '../../helpers/helpers';
-import { Answer } from '../Question/Question';
+import { QuestionsStructure } from '../Question/Question';
 import { Result } from '../Result/Result';
 import './Results.css';
 
 interface ResultsProps {
-  questions: Answer[];
+  questions: QuestionsStructure[];
   yourAnswers: number[];
 }
 

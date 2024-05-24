@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './TopScorePage.css';
 import { TopScoreList } from '../../components/TopScoreList/TopScoreList';
+import { supabase } from '../../supabaseClient';
 
 export interface TopScoreStructure {
   name: string;
@@ -11,14 +12,27 @@ export const TopScorePage: React.FC = () => {
   const [topScoreData, setTopScoreData] = useState<TopScoreStructure[]>([]);
 
   useEffect(() => {
-    const fetchTopScore = async (): Promise<void> => {
-      const response = await fetch('https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/topscore.json');
-      const data = await response.json();
-      setTopScoreData(data);
-    };
-
-    fetchTopScore();
+    getTopScore();
   }, []);
+
+  const getTopScore = async (): Promise<void> => {
+    try {
+      const { data: topscore, error } = await supabase
+        .from('topscore')
+        .select('*');
+
+      if (error) {
+        console.error('Chyba při načítání dat:', error);
+        return;
+      }
+
+      if (topscore) {
+        setTopScoreData(topscore);
+      }
+    } catch (error) {
+      console.error('Neočekávaná chyba při načítání dat:', error);
+    }
+  };
 
   return (
     <div className="topscore">
