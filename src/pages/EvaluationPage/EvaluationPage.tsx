@@ -15,39 +15,46 @@ export const EvaluationPage: React.FC<EvaluationPageProps> = ({ yourAnswers, que
   const [correctQuestions, setCorrectQuestions] = useState<number>(0);
   const [totalQuestions, setTotalQuestions] = useState<number>(0);
   const [, setIncorrectQuestions] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (questionId) {
+    if (questionId && yourAnswers.length > 0) {
       getQuestion();
+    } else {
+      setIsLoading(false);
     }
-  }, [questionId]);
+  }, [questionId, yourAnswers]);
   
   const getQuestion = async (): Promise<void> => {
+    setIsLoading(true);
+    setError(null);
 
     try {
       const { data: question, error } = await supabase
         .from('questions')
         .select('*')
         .eq('quizzesId', Number(questionId));
-  
+
       if (error) {
-        console.error('Chyba při načítání dat:', error);
+        setError('Chyba při načítání dat: ' + error.message);
+        setIsLoading(false);
         return;
       }
-  
+
       if (question && question.length > 0) {
         setQuestionData(question);
+        setIsLoading(false);
       } else {
-        console.error('Nebyly nalezeny žádné otázky.');
+        setError('Nebyly nalezeny žádné otázky.');
       }
     } catch (error) {
-      console.error('Neočekávaná chyba při načítání dat:', error);
+      setError('Neočekávaná chyba při načítání dat: ' + (error as Error).message);
     }
   };
 
   useEffect(() => {
-
-    if (questionData) {
+    if (questionData.length > 0) {
       const total = questionData.length;
       const correct = yourAnswers.filter((answer, index) => answer === questionData[index]?.correctAnswer).length;
       const incorrect = total - correct;
@@ -60,27 +67,25 @@ export const EvaluationPage: React.FC<EvaluationPageProps> = ({ yourAnswers, que
 
   return (
     <div className="evaluation">
-
       <h2 className="evaluation__title">Tvoje hodnocení</h2>
-
       <div className="evaluation__content">
-        {
-          questionData && questionData.length > 0 ?
+        {isLoading && <p>Načítání dat...</p>}
+        {error && !isLoading && <p>{error}</p>}
+        {!isLoading && !error && yourAnswers.length === 0 && (
+          <div>
+            <p>Zde není žádné hodnocení. Pro jeho zobrazení je nutné nejprve vyplnit kvíz.</p>
+            <p>Přejít na výběr s <Link to="/quizzes">Kvízy</Link></p>
+          </div>
+        )}
+        {!isLoading && !error && yourAnswers.length > 0 && questionData && questionData.length > 0 && (
           <>
             <Results questions={questionData} yourAnswers={yourAnswers} />
-
             <div className="success-rate">
               {((correctQuestions / totalQuestions) * 100).toFixed(0)} %
             </div>
           </>
-          :
-          <div>
-            <p>Zde není žádné hodnocení. Pro jeho zobrazení je nutné nejpve vyplnit kvíz.</p>
-            <p>Přejít na výběr s <Link to="/quizzes">Kvízy</Link></p>
-          </div>
-        }
+        )}
       </div>
-
     </div>
-  )
+  );
 }
