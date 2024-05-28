@@ -45,15 +45,19 @@ export const TopScorePage: React.FC = () => {
     <div className="topscore">
 
       <h2 className="topscore__title">Žebříček nejlepších</h2>
-      {isLoading && <p>Načítání dat...</p>}
-      {error && !isLoading && <p>{error}</p>}
 
-      {
-        topScoreData && topScoreData.length > 0 ?
-          <TopScoreList topScoreData={topScoreData} />
-          :
-          <p className="topscore__content">... je prázdný!</p>
-      }
+      {isLoading ? (
+        <p className="topscore__content">Načítání dat...</p>
+      ) : (
+        <>
+          {error && <p>{error}</p>}
+          {topScoreData && topScoreData.length > 0 ? (
+            <TopScoreList topScoreData={topScoreData} />
+          ) : (
+            <p className="topscore__content">... je prázdný!</p>
+          )}
+        </>
+      )}
   </div>
   )
 }
