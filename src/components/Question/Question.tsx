@@ -46,7 +46,7 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }
         .eq('quizzesId', Number(questionId));
   
       if (error) {
-        console.error('Chyba při načítání dat:', error);
+        setError('Chyba při načítání dat: ' + error.message);
         setIsLoading(false);
         return;
       }
@@ -55,10 +55,10 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }
         setQuestionData(question);
         setIsLoading(false);
       } else {
-        console.error('Nebyly nalezeny žádné otázky.');
+        setError('Nebyly nalezeny žádné otázky.');
       }
     } catch (error) {
-      console.error('Neočekávaná chyba při načítání dat:', error);
+      setError('Neočekávaná chyba při načítání dat: ' + (error as Error).message);
     }
   };
   
