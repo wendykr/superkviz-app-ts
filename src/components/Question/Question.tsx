@@ -21,6 +21,8 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }
   const [questionData, setQuestionData] = useState<QuestionsStructure[]>([]);
   const [questionNumber, setQuestionNumber] = useState<number>(1);
   const [currentQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const { questionId } = useParams<{ questionId: string }>();
   const navigate = useNavigate();
 
@@ -28,10 +30,15 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }
     if (questionId) {
       setQuestionId(questionId);
       getQuestion();
+    } else {
+      setIsLoading(false);
     }
   }, [questionId, setQuestionId]);
   
   const getQuestion = async (): Promise<void> => {
+    setIsLoading(true);
+    setError(null);
+
     try {
       const { data: question, error } = await supabase
         .from('questions')
@@ -40,11 +47,13 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }
   
       if (error) {
         console.error('Chyba při načítání dat:', error);
+        setIsLoading(false);
         return;
       }
   
       if (question && question.length > 0) {
         setQuestionData(question);
+        setIsLoading(false);
       } else {
         console.error('Nebyly nalezeny žádné otázky.');
       }
@@ -69,21 +78,26 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }
 
   return (
     <div className="question">
+      {isLoading && <p>Načítání dat...</p>}
+      {error && !isLoading && <p>{error}</p>}
+      {
+        currentQuestion &&
+        <>
+          <p className="question__number">Otázka {questionNumber} / {questionData.length}</p>
 
-      <p className="question__number">Otázka {questionNumber} / {questionData.length}</p>
+          <h2 className="question__title">{currentQuestion.title}</h2>
 
-      <h2 className="question__title">{currentQuestion?.title}</h2>
+          <div className="question__content">
+            <img className="question__image" src={currentQuestion.image} alt="Ilustrační obrázek" />
 
-      <div className="question__content">
-        <img className="question__image" src={currentQuestion?.image} alt="Ilustrační obrázek" />
-
-        <div className="question__answers">
-          {currentQuestion?.answers.map((answer, index) => (
-            <button key={index} className="question__answer" onClick={() => handleClick(index)}>{answer}</button>
-          ))}
-        </div>
-      </div>
-
+            <div className="question__answers">
+              {currentQuestion.answers.map((answer, index) => (
+                <button key={index} className="question__answer" onClick={() => handleClick(index)}>{answer}</button>
+              ))}
+            </div>
+          </div>
+        </>
+      }
     </div>
   );
 };
