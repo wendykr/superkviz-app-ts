@@ -1,9 +1,11 @@
-# Projekt Superkvíz / verze React + Typescript +  Supabase
+# Projekt Superkvíz
 
 <span style="color: red;">Aplikaci jsem naprogramovala v **Reactu** s použitím **TypeScriptu**.</span>  
 <span style="color: red;">Pro načítání dat jsem využila cloudovou databázi **Supabase**.</span>
 
+![ukázka Superkvízu](ukazka/superkviz-ukazka.jpg)
 
+<!-- 
 ## Původní zadání
 Naprogramuj Superkvíz! Ve složce `html-vzor`, máš tam připravený vzhled aplikace v podobě hotového HTML, CSS a připravených obrázků.
 
@@ -37,3 +39,4 @@ https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/qu
 https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/topscore.json
 ```
 [Ukázka dat](https://github.com/Czechitas-React-podklady/superkviz-api/blob/main/topscore.json)
+-->
