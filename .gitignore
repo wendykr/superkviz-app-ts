@@ -25,3 +25,4 @@ dist-ssr
 
 # Exclude .env.local
 .env.local
+html-vzor/*
