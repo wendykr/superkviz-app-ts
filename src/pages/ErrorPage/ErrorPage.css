@@ -1,0 +1,20 @@
+.error {
+  text-align: center;
+}
+
+.error__title {
+  text-transform: uppercase;
+}
+
+.error__text {
+  font-size: 20px;
+}
+
+.error__link {
+  color: #000000;
+
+  &:hover {
+    color: #ffffff;
+    text-decoration: none;
+  }
+}

@@ -8,6 +8,7 @@ import { QuizzesPage } from './pages/QuizzesPage/QuizzesPage.tsx';
 import { TopScorePage } from './pages/TopScorePage/TopScorePage.tsx';
 import { Question } from './components/Question/Question.tsx';
 import { EvaluationPage } from './pages/EvaluationPage/EvaluationPage.tsx';
+import { ErrorPage } from './pages/ErrorPage/ErrorPage.tsx';
 
 
 const Main = () => {
@@ -57,6 +58,10 @@ const Main = () => {
         <Route
           path="topscore"
           element={<TopScorePage />}
+        />
+        <Route
+          path="*"
+          element={<ErrorPage />}
         />
       </Route>
     ),

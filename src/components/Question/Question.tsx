@@ -32,6 +32,7 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }
       getQuestion();
     } else {
       setIsLoading(false);
+      setError('Neplatné nebo chybějící ID otázky.');
     }
   }, [questionId, setQuestionId]);
   
@@ -53,12 +54,13 @@ export const Question: React.FC<QuestionProps> = ({ yourAnswers, setQuestionId }
   
       if (question && question.length > 0) {
         setQuestionData(question);
-        setIsLoading(false);
       } else {
-        setError('Nebyly nalezeny žádné otázky.');
+        setError(`Data s ID ${questionId} neexistují v databázi.`);
       }
+      setIsLoading(false);
     } catch (error) {
       setError('Neočekávaná chyba při načítání dat: ' + (error as Error).message);
+      setIsLoading(false);
     }
   };
   

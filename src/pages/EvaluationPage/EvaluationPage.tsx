@@ -23,6 +23,7 @@ export const EvaluationPage: React.FC<EvaluationPageProps> = ({ yourAnswers, que
       getQuestion();
     } else {
       setIsLoading(false);
+      setError('Neplatné nebo chybějící ID otázky.');
     }
   }, [questionId, yourAnswers]);
   
@@ -44,12 +45,13 @@ export const EvaluationPage: React.FC<EvaluationPageProps> = ({ yourAnswers, que
 
       if (question && question.length > 0) {
         setQuestionData(question);
-        setIsLoading(false);
       } else {
-        setError('Nebyly nalezeny žádné otázky.');
+        setError(`ID ${questionId} neexistuje.`);
       }
+      setIsLoading(false);
     } catch (error) {
       setError('Neočekávaná chyba při načítání dat: ' + (error as Error).message);
+      setIsLoading(false);
     }
   };
 
