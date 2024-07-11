@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { QuestionsStructure } from "../components/Question/Question";
-import { supabase } from "../supabaseClient";
+import { useState } from 'react';
+import { QuestionsStructure } from '../components/Question/Question';
+import { supabase } from '../supabaseClient';
 
 export const useQuestions = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -9,7 +9,7 @@ export const useQuestions = () => {
 
   const getQuestion = async (questionId: number | string): Promise<void> => {
     if (!questionId) {
-      setError("Chybějící ID otázky.");
+      setError('Chybějící ID otázky.');
       setIsLoading(false);
       return;
     }
@@ -19,12 +19,12 @@ export const useQuestions = () => {
 
     try {
       const { data: question, error } = await supabase
-        .from("questions")
-        .select("*")
-        .eq("quizzesId", Number(questionId));
+        .from('questions')
+        .select('*')
+        .eq('quizzesId', Number(questionId));
 
       if (error) {
-        setError("Chyba při načítání dat: " + error.message);
+        setError('Chyba při načítání dat: ' + error.message);
         setIsLoading(false);
         return;
       }
@@ -37,7 +37,7 @@ export const useQuestions = () => {
       setIsLoading(false);
     } catch (error) {
       setError(
-        "Neočekávaná chyba při načítání dat: " + (error as Error).message
+        'Neočekávaná chyba při načítání dat: ' + (error as Error).message
       );
       setIsLoading(false);
     }

@@ -1,80 +1,80 @@
 .question {
-	padding: 50px;
-	min-height: 400px;
-	background-color: #ffffff;
-	color: #000000;
-	border-radius: 15px;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 50px;
+  min-height: 400px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .question__number {
-	margin: 0 0 20px 0;
-	font-family: 'Bangers', cursive;
-	font-size: 24px;
-	text-align: center;
-	color: var(--cervena);
+  margin: 0 0 20px 0;
+  font-family: 'Bangers', cursive;
+  font-size: 24px;
+  text-align: center;
+  color: var(--cervena);
 }
 
 .question__title {
-	margin: 20px 0 30px 0;
-	font-size: 36px;
-	line-height: 1.2;
-	text-align: center;
-	color: #000000;
+  margin: 20px 0 30px 0;
+  font-size: 36px;
+  line-height: 1.2;
+  text-align: center;
+  color: #000000;
 }
 
 .question__content {
-	display: flex;
-	flex-direction: column;
-	gap: 60px;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: center;
 }
 
 @media screen and (min-width: 680px) {
-	.question__content {
-		display: grid;
-		grid-template-columns: 300px 1fr;
-		gap: 60px;
-		align-items: center;
-	}
+  .question__content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 60px;
+    align-items: center;
+  }
 }
 
 .question__image {
-	width: 60%;
-	padding: 5px;
-	border-radius: 50%;
-	border: 3px dotted var(--cervena);
+  width: 60%;
+  padding: 5px;
+  border-radius: 50%;
+  border: 3px dotted var(--cervena);
 }
 
 @media screen and (min-width: 680px) {
-	.question__image {
-		width: 100%;
-		padding: 5px;
-		border-radius: 50%;
-		border: 3px dotted var(--cervena);
-	}
+  .question__image {
+    width: 100%;
+    padding: 5px;
+    border-radius: 50%;
+    border: 3px dotted var(--cervena);
+  }
 }
 
 .question__answers {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
 }
 
 .question__answer {
-	font-size: 24px;
-	text-align: left;
-	padding: 15px 45px;
-	background-color: var(--seda);
-	border: 0;
-	border-radius: 100vw;
-	transition: all 0.2s;
-	transform: translateX(0);
-	cursor: pointer;
+  font-size: 24px;
+  text-align: left;
+  padding: 15px 45px;
+  background-color: var(--seda);
+  border: 0;
+  border-radius: 100vw;
+  transition: all 0.2s;
+  transform: translateX(0);
+  cursor: pointer;
 }
 
 .question__answer:hover {
-	background-color: var(--cervena);
-	color: #ffffff;
-	transform: translateX(-10px);
+  background-color: var(--cervena);
+  color: #ffffff;
+  transform: translateX(-10px);
 }

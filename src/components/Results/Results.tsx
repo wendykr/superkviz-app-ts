@@ -9,7 +9,6 @@ interface ResultsProps {
 }
 
 export const Results: React.FC<ResultsProps> = ({ questions, yourAnswers }) => {
-
   return (
     <div className="results">
       {questions.map((question, index) => {
@@ -32,8 +31,14 @@ export const Results: React.FC<ResultsProps> = ({ questions, yourAnswers }) => {
       })}
 
       <div className="results__count">
-        Správně máš {yourAnswers.filter((answer, index) => answer === questions?.[index].correctAnswer).length} {declineResultsCount(questions?.length)}.
+        Správně máš{' '}
+        {
+          yourAnswers.filter(
+            (answer, index) => answer === questions?.[index].correctAnswer
+          ).length
+        }{' '}
+        {declineResultsCount(questions?.length)}.
       </div>
     </div>
   );
-}
+};

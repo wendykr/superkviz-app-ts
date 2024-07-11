@@ -2,13 +2,19 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,400i,700,700i&subset=latin-ext');
 
 :root {
-	--cervena: #ff0844;
-	--oranzova: #ffb199;
-	--seda: #e0e0e0;
+  --cervena: #ff0844;
+  --oranzova: #ffb199;
+  --seda: #e0e0e0;
 }
 
-html { box-sizing: border-box; }
-*, ::before, :after { box-sizing: inherit; }
+html {
+  box-sizing: border-box;
+}
+*,
+::before,
+:after {
+  box-sizing: inherit;
+}
 
 #root {
   display: flex;
@@ -17,18 +23,30 @@ html { box-sizing: border-box; }
 }
 
 body {
-	max-width: 65rem;
-	min-height: 100vh;
-	margin: 0 auto;
-	font-family: 'Nunito', sans-serif;
-	background-image: linear-gradient(to top, var(--cervena) 0%, var(--oranzova) 100%);
+  max-width: 65rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  font-family: 'Nunito', sans-serif;
+  background-image: linear-gradient(
+    to top,
+    var(--cervena) 0%,
+    var(--oranzova) 100%
+  );
 }
 
-h1, h2, h3 {
-	font-family: 'Bangers', cursive;
-	font-weight: normal;
+h1,
+h2,
+h3 {
+  font-family: 'Bangers', cursive;
+  font-weight: normal;
 }
 
-h1 { font-size: 60px; }
-h2 { font-size: 48px; }
-h3 { font-size: 24px; }
+h1 {
+  font-size: 60px;
+}
+h2 {
+  font-size: 48px;
+}
+h3 {
+  font-size: 24px;
+}

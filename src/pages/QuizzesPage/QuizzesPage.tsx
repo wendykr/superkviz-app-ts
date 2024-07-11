@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import './QuizzesPage.css';
-import { QuizList } from "../../components/QuizList/QuizList";
+import { QuizList } from '../../components/QuizList/QuizList';
 import { supabase } from '../../supabaseClient';
 
 export interface QuizzesStructure {
@@ -43,7 +43,9 @@ export const QuizzesPage: React.FC<QuizzesPageProps> = ({ onHandleReset }) => {
         setIsLoading(false);
       }
     } catch (error) {
-      setError('Neočekávaná chyba při načítání dat: ' + (error as Error).message);
+      setError(
+        'Neočekávaná chyba při načítání dat: ' + (error as Error).message
+      );
     }
   };
 

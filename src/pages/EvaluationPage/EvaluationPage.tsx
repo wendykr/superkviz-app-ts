@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { Results } from "../../components/Results/Results";
-import "./EvaluationPage.css";
-import { Link } from "react-router-dom";
-import { useQuestions } from "../../hooks/useQuestions";
+import { useEffect, useState } from 'react';
+import { Results } from '../../components/Results/Results';
+import './EvaluationPage.css';
+import { Link } from 'react-router-dom';
+import { useQuestions } from '../../hooks/useQuestions';
 
 interface EvaluationPageProps {
   yourAnswers: number[];
@@ -25,7 +25,7 @@ export const EvaluationPage: React.FC<EvaluationPageProps> = ({
       getQuestion(questionId);
     } else {
       setIsLoading(false);
-      setError("Neplatné nebo chybějící ID otázky.");
+      setError('Neplatné nebo chybějící ID otázky.');
     }
   }, [questionId, yourAnswers]);
 

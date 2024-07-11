@@ -1,26 +1,26 @@
 .result {
-	display: grid;
-	grid-template-columns: 60px 1fr;
-	gap: 30px;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 30px;
 }
 
 .result:not(:last-child) {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .result__icon {
-	width: 100%;
+  width: 100%;
 }
 
 .result__title {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 .result__answer {
-	margin: 5px 0;
+  margin: 5px 0;
 }
 
 .result__answer--correct {
-	font-weight: 700;
-	color: var(--cervena);
+  font-weight: 700;
+  color: var(--cervena);
 }

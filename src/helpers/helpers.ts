@@ -8,7 +8,7 @@ export const declineQuestions = (count: number): string => {
   } else {
     return 'otázek';
   }
-}
+};
 
 export const declineResultsCount = (count: number): string => {
   if (count === 1) {
@@ -18,4 +18,4 @@ export const declineResultsCount = (count: number): string => {
   } else {
     return `z ${count} otázek`;
   }
-}
+};

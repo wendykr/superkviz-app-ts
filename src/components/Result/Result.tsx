@@ -9,8 +9,13 @@ interface ResultProps {
   correctAnswer: string;
 }
 
-export const Result: React.FC<ResultProps> = ({ index, questionTitle, isCorrect, userAnswer, correctAnswer }) => {
-
+export const Result: React.FC<ResultProps> = ({
+  index,
+  questionTitle,
+  isCorrect,
+  userAnswer,
+  correctAnswer,
+}) => {
   return (
     <div className="result">
       <img
@@ -30,5 +35,5 @@ export const Result: React.FC<ResultProps> = ({ index, questionTitle, isCorrect,
         )}
       </div>
     </div>
-  )
-}
+  );
+};
