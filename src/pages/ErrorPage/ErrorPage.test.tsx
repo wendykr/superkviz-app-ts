@@ -1,7 +1,8 @@
 import { describe, test, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { ErrorPage } from './ErrorPage';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { IntroPage } from '../IntroPage/IntroPage';
 
 describe('ErrorPage component', () => {
   test('render content ErrorPage', () => {
@@ -17,5 +18,20 @@ describe('ErrorPage component', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('Zpět')).toBeInTheDocument();
     expect(screen.getByText('na hlavní stranu.')).toBeInTheDocument();
+  });
+
+  test('click button to Home Page', () => {
+    render(
+      <MemoryRouter initialEntries={['/error']} initialIndex={0}>
+        <Routes>
+          <Route path="/error" element={<ErrorPage />} />
+          <Route path="/" element={<IntroPage />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    fireEvent.click(screen.getByText('Zpět'));
+
+    expect(screen.getByText('Vítej v superkvízu')).toBeInTheDocument();
   });
 });
