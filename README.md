@@ -1,42 +1,35 @@
 # Projekt Superkvíz
+Kvízová aplikace s výběrem odpovědí na sadu otázek.
 
-<span style="color: red;">Aplikaci jsem naprogramovala v **Reactu** s použitím **TypeScriptu**.</span>  
-<span style="color: red;">Pro načítání dat jsem využila cloudovou databázi **Supabase**.</span>
+- [Zadání](#zadání)
+- [Abstrakt](#abstrakt)
+- [Rozsah a realizace](#rozsah-a-realizace)
+- [Ukázka](#ukázka)
 
+## Zadání
+Dle předem [připraveného](https://github.com/Czechitas-React-podklady/Projekt-Superkviz) statického HTML a CSS návrhu naprogramovat aplikaci s dynamickým obsahem v Reactu.
+
+
+## Abstrakt
+Po zvolení kategorie se uživateli postupně ukazují otázky. U každé otázky má na výběr z několika možných odpovědí. Kliknutí na odpověď, se posune na další otázku.  
+Jakmile uživatel odpoví na všechny otázky, zobrazí se stránka s vyhodnocení úspěšnosti v procentech a seznamem s výsledkem.  
+V seznamu je vždy otázka a odpověď uživatele. V případě špatné odpovědi se pod ní zobrazí správná odpověď.  
+Proti původnímu zadání jsem kromě Reactu přidala prvky TypeScriptu.  
+Data nenačítám z API, ale ze supabase databáze.  
+Design jsem upravila na responsivní verzi.  
+
+
+## Rozsah a realizace
+Stručný výčet znalostí, které jsem využila. **Uvádím znalosti týkající se Reactu, které jsem využila v kombinaci s TypeScriptem. HTML/CSS považuji jako samozřejmost.**
+
+- rozdělení aplikace na menší celky do *komponent*
+- práce s *useState* a událostí *onClick*
+- *useEffect* se závislostmi
+- *vlastní Hook* (`useQuestions`) ke znovu použití stavové logiky mezi komponentami
+- *komunikace mezi komponentami* (`parent` <-> `child`)
+- více stránková aplikace pomocí *React Router*
+- rozšíření `interface` přes klíčové slovo *extends*
+
+
+## Ukázka
 ![ukázka Superkvízu](ukazka/superkviz-ukazka.jpg)
-
-<!-- 
-## Původní zadání
-Naprogramuj Superkvíz! Ve složce `html-vzor`, máš tam připravený vzhled aplikace v podobě hotového HTML, CSS a připravených obrázků.
-
-
-![ukázka Superkvízu](ukazka/superkviz-ukazka.jpg)
-
-
-## API
-
-Data do aplikace vezmeš na následujících adresách:
-
-### Přehled všech kvízů
-```
-https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quizes.json
-```
-[Ukázka dat](https://github.com/Czechitas-React-podklady/superkviz-api/blob/main/quizes.json)
-
----
-
-### Detail jednoho kvízu
-Místo čísla `1` na konci dosadíš vždy ID kvízu, jehož data si přeješ.
-```
-https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/quiz/1.json
-```
-[Ukázka dat](https://github.com/Czechitas-React-podklady/superkviz-api/blob/main/quiz/1.json)
-
----
-
-### Žebříček nejlepších
-```
-https://raw.githubusercontent.com/Czechitas-React-podklady/superkviz-api/main/topscore.json
-```
-[Ukázka dat](https://github.com/Czechitas-React-podklady/superkviz-api/blob/main/topscore.json)
--->
