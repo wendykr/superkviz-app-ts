@@ -11,7 +11,6 @@ describe('ErrorPage component', () => {
         <ErrorPage />
       </MemoryRouter>
     );
-    // screen.debug();
     expect(screen.getByText('Jejda...')).toBeInTheDocument();
     expect(
       screen.getByText('Tuhle stránku ještě nemám nebo jde o chybný odkaz.')
