@@ -1,11 +1,11 @@
-import './App.css'
+import './App.css';
 import { Outlet, useLocation } from 'react-router-dom';
-import { Footer } from './components/Footer/Footer'
-import { Header } from './components/Header/Header'
+import { Footer } from './components/Footer/Footer';
+import { Header } from './components/Header/Header';
 
 function App() {
   const location = useLocation();
-  const isTopScorePage = location.pathname.includes("topscore");
+  const isTopScorePage = location.pathname.includes('topscore');
 
   return (
     <>
@@ -15,7 +15,7 @@ function App() {
       </main>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

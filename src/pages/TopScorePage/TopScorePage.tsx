@@ -37,13 +37,14 @@ export const TopScorePage: React.FC = () => {
         setIsLoading(false);
       }
     } catch (error) {
-      setError('Neočekávaná chyba při načítání dat: ' + (error as Error).message);
+      setError(
+        'Neočekávaná chyba při načítání dat: ' + (error as Error).message
+      );
     }
   };
 
   return (
     <div className="topscore">
-
       <h2 className="topscore__title">Žebříček nejlepších</h2>
 
       {isLoading ? (
@@ -58,6 +59,6 @@ export const TopScorePage: React.FC = () => {
           )}
         </>
       )}
-  </div>
-  )
-}
+    </div>
+  );
+};

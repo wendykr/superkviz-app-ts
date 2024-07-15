@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import "./Question.css";
-import { useQuestions } from "../../hooks/useQuestions";
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import './Question.css';
+import { useQuestions } from '../../hooks/useQuestions';
 
 export interface QuestionsStructure {
   id: number;
@@ -35,7 +35,7 @@ export const Question: React.FC<QuestionProps> = ({
       getQuestion(questionId);
     } else {
       setIsLoading(false);
-      setError("Neplatné nebo chybějící ID otázky.");
+      setError('Neplatné nebo chybějící ID otázky.');
     }
   }, [questionId, setQuestionId]);
 
@@ -45,7 +45,7 @@ export const Question: React.FC<QuestionProps> = ({
       questionData.length > 0 &&
       currentQuestionNumber >= questionData.length
     ) {
-      navigate("/evaluation");
+      navigate('/evaluation');
     }
   }, [currentQuestionNumber, questionData, navigate]);
 

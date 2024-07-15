@@ -3,7 +3,6 @@ import { Navigation } from '../Navigation/Navigation';
 import './Header.css';
 
 export const Header: React.FC = () => {
-
   return (
     <header className="header">
       <Link to="/" className="header__link">
@@ -12,5 +11,5 @@ export const Header: React.FC = () => {
 
       <Navigation />
     </header>
-  )
-}
+  );
+};
