@@ -1,10 +1,10 @@
 import { describe, test, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { QuizzesPage } from './QuizzesPage';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('QuizzesPage component', () => {
-  test('render loading text', () => {
+  test('render loading ext and then display start quiz buttons', async () => {
     const onHandleReset = vi.fn();
 
     render(
@@ -14,5 +14,10 @@ describe('QuizzesPage component', () => {
     );
 
     expect(screen.getByText('Načítání dat...')).toBeInTheDocument();
+
+    await waitFor(() => {
+      const buttons = screen.getAllByText('Spustit kvíz');
+      expect(buttons.length).toBe(3);
+    });
   });
 });
