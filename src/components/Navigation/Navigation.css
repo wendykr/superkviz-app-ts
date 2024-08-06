@@ -30,7 +30,14 @@
   cursor: pointer;
 }
 
-.menu__link:hover,
+@media (hover: hover) {
+  .menu__link:hover {
+    color: var(--cervena);
+    background-color: #ffffff;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
 .menu__link--active {
   color: var(--cervena);
   background-color: #ffffff;
