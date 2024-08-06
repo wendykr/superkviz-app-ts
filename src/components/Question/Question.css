@@ -73,8 +73,10 @@
   cursor: pointer;
 }
 
-.question__answer:hover {
-  background-color: var(--cervena);
-  color: #ffffff;
-  transform: translateX(-10px);
+@media (hover: hover) {
+  .question__answer:hover {
+    background-color: var(--cervena);
+    color: #ffffff;
+    transform: translateX(-10px);
+  }
 }
